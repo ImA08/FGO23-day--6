@@ -23,12 +23,12 @@ const userBuy = (userId) => {
       {
         productId: 1,
         qty: 1,
-        price: 0,
+        price: 250000,
       },
       {
         productId: 2,
         qty: 4,
-        price: 0,
+        price: 400000,
       },
     ];
     setTimeout(() => {
@@ -43,7 +43,7 @@ const menghitungBelanja = (totPembelian) => {
     return console.log("User belum melakukan pembelian!");
   }
 
-  let discount, totalBayar;
+  let discount, totalBayar, totalDiscount;
   const success = true;
 
   return new Promise((resolve, reject) => {
@@ -55,8 +55,12 @@ const menghitungBelanja = (totPembelian) => {
       discount = 10 / 100;
     }
 
-    totalBayar = totPembelian - totPembelian * discount;
-    console.log(`Total pembayaran user = ${totalBayar}`);
+    totalDiscount = totPembelian * discount;
+    totalBayar = totPembelian - totalDiscount;
+    console.log(`
+        Total pembelian user = ${totPembelian}
+        Total discount user ( ${discount * 100}% ) = ${totalDiscount}
+        Total pembayaran user = ${totalBayar}`);
 
     setTimeout(() => {
       if (success) return resolve();
